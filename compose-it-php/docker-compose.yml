@@ -1,0 +1,26 @@
+app:
+    image: busybox:latest
+    volumes:
+        - "public:/var/www"
+
+nginx:
+    image: centaurwarchief/nginx:1.7.9
+    command: nginx -c /etc/conf/nginx/nginx.conf
+    volumes:
+        - "etc/nginx:/etc/conf/nginx"
+    volumes_from:
+        - app
+    ports:
+        - "8080:80"
+    links:
+        - phpfpm
+
+phpfpm:
+    image: centaurwarchief/php:5.6.7
+    command: php-fpm -y /etc/conf/php/php-fpm.conf -c /etc/conf/php/php.ini
+    volumes:
+        - "etc/php:/etc/conf/php"
+    volumes_from:
+        - app
+    expose:
+        - "9000"
