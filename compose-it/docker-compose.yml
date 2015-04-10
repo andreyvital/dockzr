@@ -1,0 +1,33 @@
+app:
+    image: busybox:latest
+    volumes:
+        - "public:/var/www"
+
+nginx:
+    image: centaurwarchief/nginx:1.7.9
+    command: nginx -c /etc/conf/nginx/nginx.conf
+    volumes:
+        - "etc/nginx:/etc/conf/nginx"
+    volumes_from:
+        - app
+    ports:
+        - "8080:80"
+    links:
+        - hhvm
+
+hhvm:
+    image: jolicode/hhvm:latest
+    command: hhvm --mode server -vServer.Type=fastcgi -vServer.Port=9000
+    expose:
+        - "9000"
+    volumes_from:
+        - app
+    links:
+        - "mysql:mysql"
+
+mysql:
+    image: mysql:5.6
+    environment:
+        MYSQL_ROOT_PASSWORD: 1234
+    expose:
+        - "3306"
