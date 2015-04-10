@@ -30,14 +30,14 @@ RUN apt-get update && \
                 --add-module=../ngx_devel_kit \
                 --add-module=../lua-nginx-module \
                 --add-module=../echo-nginx-module && \
-    make -j2 && \
+    make -j"$(nproc)" && \
     make install && \
     mkdir -p /etc/conf && \
     rm -f /etc/nginx/nginx.conf && \
     apt-get -y purge pkg-config manpages manpages-dev wget git build-essential gcc-4.7 && \
     apt-get clean autoclean && \
     apt-get -y autoremove && \
-    rm -rf  /tmp /etc/nginx/html /usr/src /etc/nginx/*.default /var/lib/apt/lists/* && \
+    rm -rf /tmp /etc/nginx/html /usr/src /etc/nginx/*.default /var/lib/apt/lists/* && \
     rm -rf /var/lib/{apt,dpkg,cache,log}/
 
 VOLUME ["/etc/conf", "/var/www"]
