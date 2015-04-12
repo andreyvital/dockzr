@@ -3,12 +3,13 @@ FROM debian:7
 MAINTAINER Andrey K. Vital <andreykvital@gmail.com>
 
 RUN apt-get update && \
-    apt-get install -yqq --fix-missing git wget libpcre3 libpcre3-dev openssl libssl-dev build-essential \
+    apt-get install -yqq --fix-missing --no-install-recommends \
+    git wget ca-certificates libpcre3 libpcre3-dev openssl libssl-dev build-essential \
     libfcgi-dev libfcgi0ldbl libjpeg62-dbg libmcrypt-dev libssl-dev \
-    autoconf libtool libxml2 libxml2-dev openssl libcurl4-openssl-dev \
+    automake autoconf libtool libxml2 libxml2-dev openssl libcurl4-openssl-dev \
     libbz2-1.0 libbz2-dev libjpeg-dev libpng12-dev libfreetype6 libfreetype6-dev \
     libldap-2.4-2 libldap2-dev libmcrypt4 libmcrypt-dev libmysqlclient-dev \
-    libxslt1.1 libxslt1-dev libxt-dev libevent-dev libyaml-dev libzmq-dev && \
+    libxslt1.1 libxslt1-dev libxt-dev libevent-dev libyaml-dev libzmq-dev libicu48 libicu-dev && \
     mkdir -p /usr/src && \
     cd /usr/src && \
     wget -O php-5.6.7.tar.gz http://de1.php.net/get/php-5.6.7.tar.gz/from/this/mirror && \
@@ -75,6 +76,19 @@ RUN apt-get update && \
         yes '' |pecl install zmq-1.1.2 && \
         yes '' |pecl install apcu-4.0.7 && \
         yes '' |pecl install amqp && \
+        yes '' |pecl install mongo && \
+        yes '' |pecl install riak && \
+        yes '' |pecl install SPL_Types && \
+        yes '' |pecl install zip && \
+        yes '' |pecl install memcache && \
+        yes '' |pecl install mailparse && \
+        yes '' |pecl install timezonedb && \
+        yes '' |pecl install ssh2-0.12 && \
+        yes '' |pecl install oauth && \
+        yes '' |pecl install igbinary && \
+        yes '' |pecl install msgpack-0.5.5 && \
+        yes '' |pecl install intl && \
+        yes '' |pecl install uploadprogress && \
         apt-get -y purge manpages manpages-dev wget git build-essential && \
         apt-get -y autoremove && \
         apt-get clean autoclean && \
