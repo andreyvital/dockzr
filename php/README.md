@@ -1,7 +1,5 @@
 # php `5.6.7`
-You fucking should run **php-fpm** by yourself, provide `php.ini` & `php-fpm.conf` by yourself.
-
-# Available extensions
+## Available extensions
 You can enable those extensions below, if you want, they're installed but as I'm not providing any `php.ini`, they're not loaded.
 
 | extension | version | #
