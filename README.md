@@ -1,4 +1,4 @@
-### `Dockzr`
+### `dockzr`
 
 Optimized images ready for use with [Docker](https://www.docker.com/).
 
