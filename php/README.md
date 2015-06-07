@@ -1,8 +1,7 @@
-# php `5.6.7`
-## Available extensions
-You can enable those extensions below, if you want, they're installed but as I'm not providing any `php.ini`, they're not loaded.
+## php `5.6.7`
+#### Available extensions
 
-| extension | version | #
+| Extension | Version | #
 | :---: | :---: | :---: |
 | `redis` | *2.2.7* | `redis.so`
 | `yaml` | *1.1.1* | `yaml.so`

@@ -1,6 +1,6 @@
 FROM debian:7
 
-MAINTAINER Andrey K. V. <andreykvital@gmail.com>
+MAINTAINER Andrey K. Vital <andreykvital@gmail.com>
 
 RUN apt-get update && \
     apt-get install -y git wget libpcre3 libpcre3-dev openssl libssl-dev build-essential \
