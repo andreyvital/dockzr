@@ -1,4 +1,4 @@
-## php `5.6.7`
+## php `5.6.7`, `5.6.10`
 #### Available extensions
 
 | Extension | Version | #
