@@ -9,3 +9,4 @@ Optimized images ready for use with [Docker](https://www.docker.com/).
 | nginx | *1.7.9* | `centaurwarchief/nginx:1.7.9`
 | disque | alpha | `centaurwarchief/disque:alpha`
 | liquibase | 3.3.5 | `centaurwarchief/liquibase:3.3.5`
+| znc | 1.6.0 | `centaurwarchief/znc:1.6.0`
