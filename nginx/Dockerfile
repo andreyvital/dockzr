@@ -7,13 +7,13 @@ RUN apt-get update && \
         lua5.1 liblua5.1-0 liblua5.1-0-dev && \
     ln -s /usr/lib/x86_64-linux-gnu/liblua5.1.so /usr/lib/liblua.so && \
     mkdir -p /usr/src && \
-    wget -O /usr/src/nginx-1.7.9.tar.gz http://nginx.org/download/nginx-1.7.9.tar.gz && \
-    cd /usr/src && tar -zxvf nginx-1.7.9.tar.gz && \
+    wget -O /usr/src/nginx-1.9.7.tar.gz http://nginx.org/download/nginx-1.9.7.tar.gz && \
+    cd /usr/src && tar -zxvf nginx-1.9.7.tar.gz && \
     git clone https://github.com/simpl/ngx_devel_kit && \
     git clone https://github.com/openresty/lua-nginx-module && \
     git clone https://github.com/openresty/headers-more-nginx-module headers-more-nginx-module && \
     git clone https://github.com/openresty/echo-nginx-module.git && \
-    cd /usr/src/nginx-1.7.9 && \
+    cd /usr/src/nginx-1.9.7 && \
     ./configure --user=www-data \
                 --group=www-data \
                 --prefix=/etc/nginx \
@@ -25,6 +25,7 @@ RUN apt-get update && \
                 --lock-path=/var/run/nginx.lock \
                 --with-http_ssl_module \
                 --with-pcre \
+                --with-http_v2_module \
                 --with-ld-opt='-Wl,-rpath,/usr/include/lua5.1' \
                 --add-module=../headers-more-nginx-module \
                 --add-module=../ngx_devel_kit \
@@ -35,8 +36,7 @@ RUN apt-get update && \
     mkdir -p /etc/conf && \
     rm -f /etc/nginx/nginx.conf && \
     apt-get -y purge pkg-config manpages manpages-dev wget git build-essential gcc-4.7 && \
-    apt-get clean autoclean && \
-    apt-get -y autoremove && \
+    apt-get -y clean autoclean autoremove && \
     rm -rf /tmp /etc/nginx/html /usr/src /etc/nginx/*.default /var/lib/apt/lists/* && \
     rm -rf /var/lib/{apt,dpkg,cache,log}/
 
