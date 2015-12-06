@@ -10,14 +10,13 @@ RUN apt-get update && \
     libbz2-1.0 libbz2-dev libjpeg-dev libpng12-dev libfreetype6 libfreetype6-dev \
     libldap-2.4-2 libldap2-dev libmcrypt4 libmcrypt-dev libmysqlclient-dev \
     libxslt1.1 libxslt1-dev libxt-dev libevent-dev libyaml-dev libzmq-dev libicu48 libicu-dev && \
-    mkdir -p /usr/src && \
-    cd /usr/src && \
-    wget -O php-5.6.10.tar.gz http://de1.php.net/get/php-5.6.10.tar.gz/from/this/mirror && \
+    mkdir -p /usr/src && cd /usr/src && \
+    wget -O php-7.0.0.tar.gz http://de1.php.net/get/php-7.0.0.tar.gz/from/this/mirror && \
     wget https://github.com/alanxz/rabbitmq-c/releases/download/v0.5.2/rabbitmq-c-0.5.2.tar.gz && \
-    tar -zxvf php-5.6.10.tar.gz && \
+    tar -zxvf php-7.0.0.tar.gz && \
     tar -zxvf rabbitmq-c-0.5.2.tar.gz && \
     cd /usr/src/rabbitmq-c-0.5.2 && autoreconf -i && ./configure && make -j"$(nproc)" && make install && \
-    cd /usr/src/php-5.6.10 && \
+    cd /usr/src/php-7.0.0 && \
     ./configure \
         --disable-rpath \
         --disable-short-tags \
@@ -90,11 +89,9 @@ RUN apt-get update && \
         yes '' |pecl install intl && \
         yes '' |pecl install uploadprogress && \
         apt-get -y purge manpages manpages-dev wget git build-essential && \
-        apt-get -y autoremove && \
-        apt-get clean autoclean && \
+        apt-get -y autoremove clean autoclean && \
         dpkg --list |grep ^rc |awk '{print $2;}' |xargs dpkg --purge && \
-        rm -rf /tmp /usr/src /var/lib/{apt,dpkg,cache,log} && \
-        rm -rf /usr/local/php/man/*
+        rm -rf /tmp /usr/src /var/lib/{apt,dpkg,cache,log} /usr/local/php/man/*
 
 VOLUME ["/etc/conf", "/var/www"]
 
