@@ -7,13 +7,13 @@ RUN apt-get update && \
         lua5.1 liblua5.1-0 liblua5.1-0-dev && \
     ln -s /usr/lib/x86_64-linux-gnu/liblua5.1.so /usr/lib/liblua.so && \
     mkdir -p /usr/src && \
-    wget -O /usr/src/nginx-1.9.7.tar.gz http://nginx.org/download/nginx-1.9.7.tar.gz && \
-    cd /usr/src && tar -zxvf nginx-1.9.7.tar.gz && \
+    wget -O /usr/src/nginx-1.9.9.tar.gz http://nginx.org/download/nginx-1.9.9.tar.gz && \
+    cd /usr/src && tar -zxvf nginx-1.9.9.tar.gz && \
     git clone https://github.com/simpl/ngx_devel_kit && \
     git clone https://github.com/openresty/lua-nginx-module && \
     git clone https://github.com/openresty/headers-more-nginx-module headers-more-nginx-module && \
     git clone https://github.com/openresty/echo-nginx-module.git && \
-    cd /usr/src/nginx-1.9.7 && \
+    cd /usr/src/nginx-1.9.9 && \
     ./configure --user=www-data \
                 --group=www-data \
                 --prefix=/etc/nginx \
